@@ -9,8 +9,7 @@ const Movie = ({ movies }) => {
             src={`https://image.tmdb.org/t/p/w500/${m.backdrop_path}`}
             alt={m.title}
           />
-          <p>{m.title}</p>
-          <p>{m.overview}</p>
+          <h3>{m.title ? m.title : m.name}</h3>
         </div>
       ))}
     </>

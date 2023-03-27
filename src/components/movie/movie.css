@@ -1,3 +1,13 @@
 .movie{
-    border: 1px red solid;
+    border-radius: 10px;
+}
+
+.movie img{
+    border-radius: 5px;
+    width: 100%;
+    position: relative;
+}
+
+.movie h3{
+    color: white;
 }
