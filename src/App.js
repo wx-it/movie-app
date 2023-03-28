@@ -20,14 +20,16 @@ function App() {
   console.log(movies);
 
   return (
-    <div className="App">
-      <header>
-        <h1>Movies Planet</h1>
-      </header>
-      <main>
-        <SideBar />
-        <Movie movies={movies} />
-      </main>
+    <div className="container">
+      <SideBar />
+      <div className="right-container" >
+        <header>
+          <h1>Movies Planet</h1>
+        </header>
+        <main>
+          <Movie movies={movies} />
+        </main>
+      </div>
     </div>
   );
 }

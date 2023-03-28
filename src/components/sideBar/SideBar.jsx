@@ -1,9 +1,28 @@
-import React from 'react'
-
+import "./sideBar.css";
+import { useState } from "react";
+import { MdKeyboardDoubleArrowRight } from "react-icons/md";
 const SideBar = () => {
-  return (
-    <div>SideBar</div>
-  )
-}
+  const sideBarCollapse = localStorage.getItem("sideBar-collapsed");
+  const [isExpanded, setIsExpanded] = useState(sideBarCollapse ? false : true);
 
-export default SideBar
+  const handleToggler = () => {
+    if (isExpanded) {
+      setIsExpanded(false);
+      localStorage.setItem("sideBar-collapsed", true);
+      return;
+    }
+    setIsExpanded(true);
+    localStorage.removeItem("sideBar-collapsed");
+  };
+
+  return (
+    <div className={isExpanded ? "sideBar" : "sideBar collapsed"}>
+      <MdKeyboardDoubleArrowRight
+        className="sidebar-toggle"
+        onClick={handleToggler}
+      />
+    </div>
+  );
+};
+
+export default SideBar;

@@ -1,0 +1,18 @@
+.sideBar {
+  position: sticky;
+  min-height: 100%;
+  transition: 300ms ease-in-out;
+  overflow: hidden;
+  width: 200px;
+  cursor: pointer;
+  background-color: black;
+}
+
+.sidebar-toggle {
+  color: white;
+  font-size: 50px;
+}
+
+.sideBar.collapsed {
+  width: 50px;
+}
