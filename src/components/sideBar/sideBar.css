@@ -3,16 +3,70 @@
   min-height: 100%;
   transition: 300ms ease-in-out;
   overflow: hidden;
-  width: 200px;
+  width: 250px;
   cursor: pointer;
   background-color: black;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  font-family: "Kalam", cursive;
 }
 
 .sidebar-toggle {
   color: white;
-  font-size: 50px;
+  font-size: 40px;
+}
+
+.sidebar-toggle.rotated {
+  transform: rotate(180deg);
+}
+
+.sideBar-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: white;
+  width: 100%;
+  padding: 1rem;
 }
 
 .sideBar.collapsed {
-  width: 50px;
+  width: 70px;
+}
+
+.sideBar.collapsed h2 {
+  display: none;
+}
+
+.links {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  font-size: 24px;
+  margin-top: 2rem;
+}
+
+.links div {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 10px;
+  width: 100%;
+  padding: 1.5rem 1rem;
+}
+
+.links div h4 {
+  font-size: 18px;
+  margin: 0;
+}
+
+.links div:hover {
+  color: rgba(0, 173, 69, 1);
+}
+
+.links.icons-only h4 {
+  display: none;
 }
