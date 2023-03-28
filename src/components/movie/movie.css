@@ -1,26 +1,57 @@
-.movie{
+.movie {
+  position: relative;  
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
-.movie img{
-    border-radius: 5px;
-    width: 100%;
-    position: relative;
+.movie img {
+  border-radius: 5px;
+  width: 100%;
+  position: relative;
 }
 
-.movie-title{
-    background-color: #00AD45;
-    width: 100%;
-    border-radius: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: -1;
-    position: absolute;
+.movie-title {
+  background-color: #2b332e;
+  width: 90%;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  opacity: 0;
+  bottom: 5px;
+  transition: all 0.5s linear;
 }
 
-.movie-title h3{
-    color: black;
-    font-size: 15px;
-    font-weight: 500;
-    padding: 0px 5px;
+.movie-title h3 {
+  color: white;
+  font-size: 15px;
+  font-weight: 500;
+  padding: 0px 5px;
+  text-align: center;
+}
+
+.movie:hover .movie-title {
+  opacity: 1;
+  z-index: 0;
+}
+
+.movie:hover .overlay-card {
+  opacity: 0.8;
+}
+
+/*........overlay...........*/
+.overlay-card {
+  background-color: #000;
+  border-radius: 5px;
+  width: 100%;
+  height: 100%;
+  transition: var(--transition-three-ms);
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
