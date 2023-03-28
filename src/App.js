@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Movie from "./components/movie/Movie";
+import SideBar from "./components/sideBar/SideBar";
 
 function App() {
   const [movies, setMovies] = useState([]);
@@ -24,6 +25,7 @@ function App() {
         <h1>Movies Planet</h1>
       </header>
       <main>
+        <SideBar />
         <Movie movies={movies} />
       </main>
     </div>

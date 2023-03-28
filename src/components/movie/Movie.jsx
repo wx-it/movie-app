@@ -2,7 +2,7 @@ import "./movie.css";
 
 const Movie = ({ movies }) => {
   return (
-    <>
+    <div className="movies" >
       {movies.map((m) => (
         <div key={m.id} className="movie">
           <img
@@ -15,7 +15,7 @@ const Movie = ({ movies }) => {
           </div>
         </div>
       ))}
-    </>
+    </div>
   );
 };
 
