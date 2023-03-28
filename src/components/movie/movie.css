@@ -1,5 +1,4 @@
 .movie{
-    border-radius: 10px;
 }
 
 .movie img{
@@ -8,6 +7,20 @@
     position: relative;
 }
 
-.movie h3{
-    color: white;
+.movie-title{
+    background-color: #00AD45;
+    width: 100%;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: -1;
+    position: absolute;
+}
+
+.movie-title h3{
+    color: black;
+    font-size: 15px;
+    font-weight: 500;
+    padding: 0px 5px;
 }

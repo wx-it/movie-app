@@ -6,10 +6,12 @@ const Movie = ({ movies }) => {
       {movies.map((m) => (
         <div key={m.id} className="movie">
           <img
-            src={`https://image.tmdb.org/t/p/w500/${m.backdrop_path}`}
+            src={`https://image.tmdb.org/t/p/w1280/${m.poster_path}`}
             alt={m.title}
           />
-          <h3>{m.title ? m.title : m.name}</h3>
+          <div className="movie-title" >
+            <h3>{m.title ? m.title : m.name}</h3>
+          </div>
         </div>
       ))}
     </>
