@@ -1,9 +1,9 @@
 import "../movie/movie.css";
 
-const Movies = ({ topRatedMovies }) => {
+const Shows = ({ topRatedShows }) => {
   return (
     <div className="movies" >
-      {topRatedMovies.map((m) => (
+      {topRatedShows.map((m) => (
         <div key={m.id} className="movie">
           <img
             src={`https://image.tmdb.org/t/p/w1280/${m.poster_path}`}
@@ -19,4 +19,4 @@ const Movies = ({ topRatedMovies }) => {
   );
 };
 
-export default Movies;
+export default Shows;

@@ -4,11 +4,13 @@ import Movie from "./components/movie/Movie";
 import SideBar from "./components/sideBar/SideBar";
 import Trending from "./components/trending/Trending";
 import Movies from "./components/movies/Movies";
+import Shows from "./components/shows/Shows";
 
 function App() {
   const [movies, setMovies] = useState([]);
   const [trending, setTrending] = useState([]);
-  const [latestMovies, setLatestMovies] = useState([]);
+  const [topRatedMovies, setTopRatedMovies] = useState([]);
+  const [topRatedShows, setTopRatedShows] = useState([]);
 
   // discover; home link
   useEffect(() => {
@@ -47,13 +49,24 @@ function App() {
         "https://api.themoviedb.org/3/movie/top_rated?api_key=305075112da051598dad6f3e8103590b&language=en-US"
       );
       const response = await movies.json();
-      setLatestMovies(response.results);
+      setTopRatedMovies(response.results);
     };
 
     fetchData();
   }, []);
 
-  console.log(latestMovies);
+  // top rated shows; shows link
+  useEffect(() => {
+    const fetchData = async () => {
+      const tv = await fetch(
+        "https://api.themoviedb.org/3/tv/top_rated?api_key=305075112da051598dad6f3e8103590b&language=en-US"
+      );
+      const response = await tv.json();
+      setTopRatedShows(response.results);
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <div className="container">
@@ -69,10 +82,13 @@ function App() {
               path="/trending"
               element={<Trending trending={trending} />}
             />
-
             <Route
               path="/movies"
-              element={<Movies latestMovies={latestMovies} />}
+              element={<Movies topRatedMovies={topRatedMovies} />}
+            />
+            <Route
+              path="/Shows"
+              element={<Shows topRatedShows={topRatedShows} />}
             />
           </Routes>
         </main>
