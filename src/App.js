@@ -3,10 +3,12 @@ import { Routes, Route } from "react-router";
 import Movie from "./components/movie/Movie";
 import SideBar from "./components/sideBar/SideBar";
 import Trending from "./components/trending/Trending";
+import Movies from "./components/movies/Movies";
 
 function App() {
   const [movies, setMovies] = useState([]);
   const [trending, setTrending] = useState([]);
+  const [latestMovies, setLatestMovies] = useState([]);
 
   // discover; home link
   useEffect(() => {
@@ -37,6 +39,22 @@ function App() {
     fetchData();
   }, []);
 
+  // latest movies; movies link
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const movies = await fetch(
+        "https://api.themoviedb.org/3/movie/top_rated?api_key=305075112da051598dad6f3e8103590b&language=en-US"
+      );
+      const response = await movies.json();
+      setLatestMovies(response.results);
+    };
+
+    fetchData();
+  }, []);
+
+  console.log(latestMovies);
+
   return (
     <div className="container">
       <SideBar />
@@ -50,6 +68,11 @@ function App() {
             <Route
               path="/trending"
               element={<Trending trending={trending} />}
+            />
+
+            <Route
+              path="/movies"
+              element={<Movies latestMovies={latestMovies} />}
             />
           </Routes>
         </main>

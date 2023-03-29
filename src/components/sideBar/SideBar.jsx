@@ -43,10 +43,12 @@ const SideBar = () => {
             <h4>Trending</h4>
           </div>
         </Link>
+        <Link to="/movies" >
         <div>
           <TbMovie />
           <h4>Movies</h4>
         </div>
+        </Link>
         <div>
           <SlScreenDesktop />
           <h4>Shows</h4>
