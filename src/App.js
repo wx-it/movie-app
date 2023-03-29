@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router";
-import Movie from "./components/movie/Movie";
+import Home from "./components/home/Home";
 import SideBar from "./components/sideBar/SideBar";
 import Trending from "./components/trending/Trending";
 import Movies from "./components/movies/Movies";
 import Shows from "./components/shows/Shows";
 
 function App() {
-  const [movies, setMovies] = useState([]);
+  const [allData, setallData] = useState([]);
   const [trending, setTrending] = useState([]);
   const [topRatedMovies, setTopRatedMovies] = useState([]);
   const [topRatedShows, setTopRatedShows] = useState([]);
@@ -20,7 +20,7 @@ function App() {
       );
 
       const response = await data.json();
-      setMovies(response.results);
+      setallData(response.results);
     };
     fetchData();
   }, []);
@@ -77,7 +77,7 @@ function App() {
         </header>
         <main>
           <Routes>
-            <Route path="/" element={<Movie movies={movies} />} />
+            <Route path="/" element={<Home allData={allData} />} />
             <Route
               path="/trending"
               element={<Trending trending={trending} />}

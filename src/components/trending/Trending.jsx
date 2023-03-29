@@ -1,4 +1,4 @@
-import "../movie/movie.css";
+import "../home/movie.css";
 
 const Movie = ({ trending }) => {
   return (
