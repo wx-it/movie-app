@@ -4,6 +4,8 @@ import { MdKeyboardDoubleArrowRight } from "react-icons/md";
 import { SlScreenDesktop } from "react-icons/sl";
 import { TbMovie } from "react-icons/tb";
 import { AiOutlineHome, AiOutlineFire } from "react-icons/ai";
+import { Link } from "react-router-dom";
+
 const SideBar = () => {
   const sideBarCollapse = localStorage.getItem("sideBar-collapsed");
   const [isExpanded, setIsExpanded] = useState(sideBarCollapse ? false : true);
@@ -29,14 +31,18 @@ const SideBar = () => {
       </div>
 
       <nav className={isExpanded ? "links" : "links icons-only"}>
-        <div>
-          <AiOutlineHome />
-          <h4>Home</h4>
-        </div>
-        <div>
-          <AiOutlineFire />
-          <h4>Trending</h4>
-        </div>
+        <Link to="/">
+          <div>
+            <AiOutlineHome />
+            <h4>Home</h4>
+          </div>
+        </Link>
+        <Link to="/trending">
+          <div>
+            <AiOutlineFire />
+            <h4>Trending</h4>
+          </div>
+        </Link>
         <div>
           <TbMovie />
           <h4>Movies</h4>
