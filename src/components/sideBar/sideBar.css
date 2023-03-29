@@ -4,7 +4,6 @@
   transition: 300ms ease-in-out;
   overflow: hidden;
   width: 250px;
-  cursor: pointer;
   background-color: black;
   display: flex;
   flex-direction: column;
@@ -16,10 +15,23 @@
 .sidebar-toggle {
   color: white;
   font-size: 40px;
+  cursor: pointer;
+}
+
+.sidebar-toggle:hover{
+  color: rgba(0, 173, 69, 1);
 }
 
 .sidebar-toggle.rotated {
   transform: rotate(180deg);
+  padding: 0 10px;
+}
+
+.sidebar-toggle.rotated:hover{
+  color: white;
+  background-color: rgb(58, 58, 58);
+  border-radius: 5px;
+  box-shadow: inset 1px 5px 10px rgba(0, 0, 0, 0.3);
 }
 
 .sideBar-top {
@@ -56,6 +68,7 @@
   gap: 10px;
   width: 100%;
   padding: 1.5rem 1rem;
+  cursor: pointer;
 }
 
 .links div h4 {
