@@ -1,19 +1,10 @@
-import "../home/movie.css";
+import Card from "../card/Card";
 
-const Movies = ({ topRatedMovies }) => {
+const Movies = ({ topRatedMovies, setCurrentId }) => {
   return (
-    <div className="movies" >
+    <div className="movies">
       {topRatedMovies.map((m) => (
-        <div key={m.id} className="movie">
-          <img
-            src={`https://image.tmdb.org/t/p/w1280/${m.poster_path}`}
-            alt={m.title}
-          />
-          <div className="overlay-card" ></div>
-          <div className="movie-title" >
-            <h3>{m.title ? m.title : m.name}</h3>
-          </div>
-        </div>
+        <Card m={m} setCurrentId={setCurrentId} />
       ))}
     </div>
   );
