@@ -74,11 +74,11 @@ function App() {
 
 
   //get any movie/show
-  const [id, setId] = useState(12345); // replace with actual ID
+  const [id, setId] = useState(null); // replace with actual ID
 
   useEffect(() => {
     async function fetchMovie() {
-      const response = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=YOUR_API_KEY`);
+      const response = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=305075112da051598dad6f3e8103590b`);
       const data = await response.json();
       setFind(data)
     }
@@ -87,7 +87,7 @@ function App() {
 
   function handleIdChange(newId) {
     setId(newId);
-    console.log(id)
+    console.log(find)
   }
 
   return (
@@ -99,7 +99,7 @@ function App() {
         </header>
         <main>
           <Routes>
-            <Route path="/" element={<Home allData={allData} />} />
+            <Route path="/" element={<Home allData={allData} handleIdChange={handleIdChange}  />} />
             <Route
               path="/trending"
               element={<Trending trending={trending} />}
@@ -115,10 +115,8 @@ function App() {
 
             <Route
               path="/about"
-              element={<Details />}
+              element={<Details find={find} />}
             />
-
-            <Route element={<Card handleIdChange={handleIdChange} />} />
           </Routes>
         </main>
       </div>
