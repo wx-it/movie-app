@@ -29,7 +29,7 @@ function App() {
     fetchData();
   }, []);
 
-  console.log(allData);
+  //console.log(allData);
 
   // trending; tending link
 
