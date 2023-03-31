@@ -4,7 +4,7 @@ const Shows = ({ topRatedShows }) => {
   return (
     <div className="movies">
       {topRatedShows.map((m) => (
-        <Card m={m} />
+        <Card m={m} key={m.id} />
       ))}
     </div>
   );

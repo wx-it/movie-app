@@ -4,7 +4,7 @@ const Movie = ({ trending }) => {
   return (
     <div className="movies">
       {trending.map((m) => (
-        <Card m={m} />
+        <Card m={m} key={m.id} />
       ))}
     </div>
   );

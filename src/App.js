@@ -6,6 +6,7 @@ import Trending from "./components/trending/Trending";
 import Movies from "./components/movies/Movies";
 import Shows from "./components/shows/Shows";
 import Details from "./components/details/Details";
+import Card from "./components/card/Card";
 
 function App() {
   const [allData, setallData] = useState([]);
@@ -73,18 +74,21 @@ function App() {
 
 
   //get any movie/show
+  const [id, setId] = useState(12345); // replace with actual ID
 
-  useEffect(()=>{
-    const fetchData = async ()=>{
-      const findMovieShow = await fetch("https://api.themoviedb.org/3/movie/76600?api_key=305075112da051598dad6f3e8103590b")
-      const response = await findMovieShow.json()
-      setFind(response)
+  useEffect(() => {
+    async function fetchMovie() {
+      const response = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=YOUR_API_KEY`);
+      const data = await response.json();
+      setFind(data)
     }
-    fetchData()
-  }, [])
+    fetchMovie();
+  }, [id]);
 
-  console.log(find)
-  console.log(currentId)
+  function handleIdChange(newId) {
+    setId(newId);
+    console.log(id)
+  }
 
   return (
     <div className="container">
@@ -113,6 +117,8 @@ function App() {
               path="/about"
               element={<Details />}
             />
+
+            <Route element={<Card handleIdChange={handleIdChange} />} />
           </Routes>
         </main>
       </div>
