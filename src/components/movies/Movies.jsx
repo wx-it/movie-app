@@ -1,10 +1,10 @@
 import Card from "../card/Card";
 
-const Movies = ({ topRatedMovies }) => {
+const Movies = ({ topRatedMovies, handleIdChange }) => {
   return (
     <div className="movies">
       {topRatedMovies.map((m) => (
-        <Card m={m} key={m.id} />
+        <Card m={m} key={m.id} handleIdChange={handleIdChange} />
       ))}
     </div>
   );

@@ -13,7 +13,7 @@ function App() {
   const [trending, setTrending] = useState([]);
   const [topRatedMovies, setTopRatedMovies] = useState([]);
   const [topRatedShows, setTopRatedShows] = useState([]);
-  const [find, setFind] = useState([])
+  const [find, setFind] = useState()
   const [currentId, setCurrentId] = useState("")
 
   // discover; home link
@@ -74,7 +74,7 @@ function App() {
 
 
   //get any movie/show
-  const [id, setId] = useState(null); // replace with actual ID
+  const [id, setId] = useState(76600); // replace with actual ID
 
   useEffect(() => {
     async function fetchMovie() {
@@ -102,15 +102,15 @@ function App() {
             <Route path="/" element={<Home allData={allData} handleIdChange={handleIdChange}  />} />
             <Route
               path="/trending"
-              element={<Trending trending={trending} />}
+              element={<Trending trending={trending} handleIdChange={handleIdChange} />}
             />
             <Route
               path="/movies"
-              element={<Movies topRatedMovies={topRatedMovies} setCurrentId={setCurrentId} />}
+              element={<Movies topRatedMovies={topRatedMovies} setCurrentId={setCurrentId} handleIdChange={handleIdChange} />}
             />
             <Route
               path="/shows"
-              element={<Shows topRatedShows={topRatedShows} />}
+              element={<Shows topRatedShows={topRatedShows} handleIdChange={handleIdChange} />}
             />
 
             <Route

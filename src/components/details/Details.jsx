@@ -1,7 +1,7 @@
 import "./details.css";
 
 const Details = ({ find }) => {
-  const getGenres = find.genres.map((g) => <p>{g.name}</p>);
+  const getGenres = find.genres.map((g) => <p key={g.name}>{g.name}</p>);
 
   return (
     <div className="about">

@@ -1,7 +1,9 @@
 .sideBar {
   position: sticky;
   position: -webkit-sticky;
-  min-height: 100vh;
+  top: 0;
+  left: 0;
+  height: 100vh;
   transition: 300ms ease-in-out;
   overflow: hidden;
   width: 250px;
