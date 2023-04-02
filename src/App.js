@@ -87,7 +87,6 @@ function App() {
 
   function handleIdChange(newId) {
     setId(newId);
-    console.log(find)
   }
 
   return (
