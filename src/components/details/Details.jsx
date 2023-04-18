@@ -14,24 +14,27 @@ const Details = ({ find, id }) => {
       );
       const data = await response.json();
       setCast(data.cast);
-      setCrew(data.crew)
+      setCrew(data.crew);
     };
     fetchImdbCast();
   }, []);
-  console.log(cast)
+
+  console.log(crew);
 
   const firstThreeDirectors = crew
-  .filter((person) => person.known_for_department === "Directing")
-  .splice(0, 3)
-  .map((director) => (
-      <div key={director.id}>
-        <img
-          src={`https://image.tmdb.org/t/p/w1280/${director.profile_path}`}
-          alt={director.name}
-        />
-        <h4> {director.name} </h4>
-      </div>
-    ));
+    .filter((person) => person.known_for_department === "Directing")
+    .splice(0, 3)
+    .map((director) =>
+      director.profile_path ? (
+        <div key={director.id}>
+          <img
+            src={`https://image.tmdb.org/t/p/w1280/${director.profile_path}`}
+            alt={director.name}
+          />
+          <h4> {director.name} </h4>
+        </div>
+      ) : null
+    );
 
   const firstThreeActors = [...cast].splice(0, 3).map((actor) => (
     <div key={actor.cast_id}>
@@ -72,12 +75,12 @@ const Details = ({ find, id }) => {
       <span> {find.release_date} </span>
       <p> {find.overview} </p>
 
-      <div className="cast">
+      <div className="crew">
         <h3>Director</h3>
         {firstThreeDirectors}
       </div>
-      <div>
-        <h3> Cast </h3>
+      <div className="crew">
+        <h3>Cast</h3>
         {firstThreeActors}
       </div>
     </div>
