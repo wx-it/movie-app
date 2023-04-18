@@ -21,8 +21,10 @@ const Details = ({ find, id }) => {
 
   console.log(crew);
 
-  const firstThreeDirectors = crew
-    .filter((person) => person.known_for_department === "Directing")
+  const firstThreeDirectors = [...crew]
+    .filter(
+      (obj, index, self) => index === self.findIndex((t) => t.id === obj.id)
+    )
     .splice(0, 3)
     .map((director) =>
       director.profile_path ? (
@@ -31,7 +33,11 @@ const Details = ({ find, id }) => {
             src={`https://image.tmdb.org/t/p/w1280/${director.profile_path}`}
             alt={director.name}
           />
-          <h4> {director.name} </h4>
+          <div className="overlay-card"></div>
+
+          <div className="cast-title">
+            <h4> {director.name} </h4>
+          </div>
         </div>
       ) : null
     );
@@ -42,8 +48,11 @@ const Details = ({ find, id }) => {
         src={`https://image.tmdb.org/t/p/w1280/${actor.profile_path}`}
         alt={actor.name}
       />
-      <h4> {actor.name} </h4>
-      <h4> {actor.character} </h4>
+      <div className="overlay-card"></div>
+
+      <div className="cast-title">
+        <h4> {actor.name} </h4>
+      </div>
     </div>
   ));
   /*
@@ -77,11 +86,11 @@ const Details = ({ find, id }) => {
 
       <div className="crew">
         <h3>Director</h3>
-        {firstThreeDirectors}
+        <section>{firstThreeDirectors}</section>
       </div>
       <div className="crew">
         <h3>Cast</h3>
-        {firstThreeActors}
+        <section>{firstThreeActors}</section>
       </div>
     </div>
   );
