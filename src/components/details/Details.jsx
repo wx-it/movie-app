@@ -25,7 +25,7 @@ const Details = ({ find, id }) => {
     .filter(
       (obj, index, self) => index === self.findIndex((t) => t.id === obj.id)
     )
-    .splice(0, 3)
+    .splice(0, 6)
     .map((director) =>
       director.profile_path ? (
         <div key={director.id}>
@@ -33,8 +33,6 @@ const Details = ({ find, id }) => {
             src={`https://image.tmdb.org/t/p/w1280/${director.profile_path}`}
             alt={director.name}
           />
-          <div className="overlay-card"></div>
-
           <div className="cast-title">
             <h4> {director.name} </h4>
           </div>
@@ -42,33 +40,17 @@ const Details = ({ find, id }) => {
       ) : null
     );
 
-  const firstThreeActors = [...cast].splice(0, 3).map((actor) => (
+  const firstThreeActors = [...cast].splice(0, 5).map((actor) => (
     <div key={actor.cast_id}>
       <img
         src={`https://image.tmdb.org/t/p/w1280/${actor.profile_path}`}
         alt={actor.name}
       />
-      <div className="overlay-card"></div>
-
       <div className="cast-title">
         <h4> {actor.name} </h4>
       </div>
     </div>
   ));
-  /*
-  const getDirectors = cast.directors.items.map((i) => (
-    <div key={i.name}>
-      <p> {i.name} </p>
-    </div>
-  ));
-  
-  const getWriters = cast.writers.items.map((i) => (
-    <div key={i.name}>
-      <div className="cast">
-        <p> {i.name} </p>
-      </div>
-    </div>
-  ));*/
 
   return (
     <div className="about">
@@ -85,7 +67,7 @@ const Details = ({ find, id }) => {
       <p> {find.overview} </p>
 
       <div className="crew">
-        <h3>Director</h3>
+        <h3>Crew</h3>
         <section>{firstThreeDirectors}</section>
       </div>
       <div className="crew">
