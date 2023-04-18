@@ -114,7 +114,7 @@ function App() {
 
             <Route
               path="/about"
-              element={<Details find={find} />}
+              element={<Details find={find} id={id} />}
             />
           </Routes>
         </main>
