@@ -89,6 +89,16 @@ function App() {
     setId(newId);
   }
 
+  
+  useEffect(() => {
+    async function fetchMovie() {
+      const response = await fetch(`https://api.themoviedb.org/3/tv/${id}?api_key=305075112da051598dad6f3e8103590b`);
+      const data = await response.json();
+      setFind(data)
+    }
+    fetchMovie();
+  }, [id]);
+
   return (
     <div className="container">
       <SideBar />
