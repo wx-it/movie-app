@@ -5,19 +5,21 @@ const Details = ({ find, id }) => {
   const [cast, setCast] = useState([]);
   const [crew, setCrew] = useState([]);
   const getGenres = find.genres.map((g) => <p key={g.name}>{g.name}</p>);
+  const [type, setType] = useState('movie')
 
   //get cast from imdb api
   useEffect(() => {
     const fetchImdbCast = async () => {
+      setType(find.first_air_date ? "tv" : "movie")
       const response = await fetch(
-        `https://api.themoviedb.org/3/movie/${id}/credits?api_key=305075112da051598dad6f3e8103590b`
+        `https://api.themoviedb.org/3/${type}/${id}/credits?api_key=305075112da051598dad6f3e8103590b`
       );
       const data = await response.json();
       setCast(data.cast);
       setCrew(data.crew);
     };
     fetchImdbCast();
-  }, []);
+  }, [type]);
 
   console.log(crew);
 
@@ -27,17 +29,11 @@ const Details = ({ find, id }) => {
     )
     .splice(0, 6)
     .map((director) =>
-      director.profile_path ? (
         <div key={director.id}>
-          <img
-            src={`https://image.tmdb.org/t/p/w1280/${director.profile_path}`}
-            alt={director.name}
-          />
           <div className="cast-title">
             <h4> {director.name} </h4>
           </div>
         </div>
-      ) : null
     );
 
   const firstThreeActors = [...cast].splice(0, 5).map((actor) => (
@@ -62,7 +58,7 @@ const Details = ({ find, id }) => {
         />
         <div>{getGenres}</div>
       </div>
-      <h1> {find.title} </h1>
+      <h1> {find.title || find.original_name} </h1>
       <span> {find.release_date} </span>
       <p> {find.overview} </p>
 
