@@ -13,8 +13,8 @@ function App() {
   const [trending, setTrending] = useState([]);
   const [topRatedMovies, setTopRatedMovies] = useState([]);
   const [topRatedShows, setTopRatedShows] = useState([]);
-  const [find, setFind] = useState()
-  const [currentId, setCurrentId] = useState("")
+  const [find, setFind] = useState();
+  const [currentId, setCurrentId] = useState("");
 
   // discover; home link
   useEffect(() => {
@@ -72,15 +72,16 @@ function App() {
     fetchData();
   }, []);
 
-
   //get any movie/show
   const [id, setId] = useState(76600); // replace with actual ID
 
   useEffect(() => {
     async function fetchMovie() {
-      const response = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=305075112da051598dad6f3e8103590b`);
+      const response = await fetch(
+        `https://api.themoviedb.org/3/movie/${id}?api_key=305075112da051598dad6f3e8103590b`
+      );
       const data = await response.json();
-      setFind(data)
+      setFind(data);
     }
     fetchMovie();
   }, [id]);
@@ -89,14 +90,15 @@ function App() {
     setId(newId);
   }
 
-  
   useEffect(() => {
-    async function fetchMovie() {
-      const response = await fetch(`https://api.themoviedb.org/3/tv/${id}?api_key=305075112da051598dad6f3e8103590b`);
+    async function fetchTv() {
+      const response = await fetch(
+        `https://api.themoviedb.org/3/tv/${id}?api_key=305075112da051598dad6f3e8103590b`
+      );
       const data = await response.json();
-      setFind(data)
+      setFind(data);
     }
-    fetchMovie();
+    fetchTv();
   }, [id]);
 
   return (
@@ -108,24 +110,39 @@ function App() {
         </header>
         <main>
           <Routes>
-            <Route path="/" element={<Home allData={allData} handleIdChange={handleIdChange}  />} />
+            <Route
+              path="/"
+              element={
+                <Home allData={allData} handleIdChange={handleIdChange} />
+              }
+            />
             <Route
               path="/trending"
-              element={<Trending trending={trending} handleIdChange={handleIdChange} />}
+              element={
+                <Trending trending={trending} handleIdChange={handleIdChange} />
+              }
             />
             <Route
               path="/movies"
-              element={<Movies topRatedMovies={topRatedMovies} setCurrentId={setCurrentId} handleIdChange={handleIdChange} />}
+              element={
+                <Movies
+                  topRatedMovies={topRatedMovies}
+                  setCurrentId={setCurrentId}
+                  handleIdChange={handleIdChange}
+                />
+              }
             />
             <Route
               path="/shows"
-              element={<Shows topRatedShows={topRatedShows} handleIdChange={handleIdChange} />}
+              element={
+                <Shows
+                  topRatedShows={topRatedShows}
+                  handleIdChange={handleIdChange}
+                />
+              }
             />
 
-            <Route
-              path="/about"
-              element={<Details find={find} id={id} />}
-            />
+            <Route path="/about" element={<Details find={find} id={id} />} />
           </Routes>
         </main>
       </div>
