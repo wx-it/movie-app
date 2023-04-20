@@ -73,33 +73,40 @@ function App() {
   }, []);
 
   //get any movie/show
-  const [id, setId] = useState(76600); // replace with actual ID
+  const [id, setId] = useState(1399); // replace with actual ID
+  const [mediaType, setMediaType] = useState("movie");
 
   useEffect(() => {
     async function fetchMovie() {
-      const response = await fetch(
-        `https://api.themoviedb.org/3/movie/${id}?api_key=305075112da051598dad6f3e8103590b`
+      const movieResponse = await fetch(
+        `https://api.themoviedb.org/3/movie/${id}?api_key=305075112da051598dad6f3e8103590b&language=en-US`
       );
-      const data = await response.json();
-      setFind(data);
+      const movieData = await movieResponse.json();
+
+      const tvResponse = await fetch(
+        `https://api.themoviedb.org/3/tv/${id}?api_key=305075112da051598dad6f3e8103590b&language=en-US`
+      );
+      const tvData = await tvResponse.json();
+      if(tvData.first_air_date){
+        setMediaType("tv")
+        setFind(tvData)
+      } else {
+        setMediaType("movie");
+        setFind(movieData);
+      }
+      console.log(tvData)
     }
     fetchMovie();
-  }, [id]);
+  }, [id, mediaType]);
+  console.log(id)
 
   function handleIdChange(newId) {
     setId(newId);
+    setMediaType(find.name ? "tv" : "movie");
   }
 
-  useEffect(() => {
-    async function fetchTv() {
-      const response = await fetch(
-        `https://api.themoviedb.org/3/tv/${id}?api_key=305075112da051598dad6f3e8103590b`
-      );
-      const data = await response.json();
-      setFind(data);
-    }
-    fetchTv();
-  }, [id]);
+  console.log(mediaType);
+  console.log(find);
 
   return (
     <div className="container">

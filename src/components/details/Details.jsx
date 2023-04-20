@@ -10,7 +10,7 @@ const Details = ({ find, id }) => {
   //get cast from imdb api
   useEffect(() => {
     const fetchImdbCast = async () => {
-      setType(find.first_air_date ? "tv" : "movie");
+      setType(find.first_air_date ? "movie" : "tv");
       const response = await fetch(
         `https://api.themoviedb.org/3/${type}/${id}/credits?api_key=305075112da051598dad6f3e8103590b`
       );
@@ -20,9 +20,11 @@ const Details = ({ find, id }) => {
     };
     fetchImdbCast();
   }, [type]);
+  console.log(type)
+
 
   //console.log(crew);
-
+/*
   const firstThreeDirectors = [...crew]
     .filter(
       (obj, index, self) => index === self.findIndex((t) => t.id === obj.id)
@@ -47,7 +49,7 @@ const Details = ({ find, id }) => {
       </div>
     </div>
   ));
-
+*/
   return (
     <div className="about">
       <div className="image">
@@ -64,11 +66,9 @@ const Details = ({ find, id }) => {
 
       <div className="crew">
         <h3>Crew</h3>
-        <section>{firstThreeDirectors}</section>
       </div>
       <div className="crew">
         <h3>Cast</h3>
-        <section>{firstThreeActors}</section>
       </div>
     </div>
   );
