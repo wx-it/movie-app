@@ -65,16 +65,16 @@
 
 /*........crew...........*/
 
-.crew{
+.cast {
   border-top: 1px rgb(71, 71, 71) solid;
 }
 
-.crew h3{
+.cast h3 {
   font-weight: 500;
   font-size: 24px;
 }
 
-.crew section {
+.cast section {
   display: grid;
   align-items: center;
   justify-content: center;
@@ -83,7 +83,7 @@
   height: 100%;
 }
 
-.crew div {
+.cast div {
   position: relative;
   cursor: pointer;
   display: flex;
@@ -92,7 +92,7 @@
   flex-direction: column;
 }
 
-.crew div img {
+.cast div img {
   position: relative;
   border-radius: 5px;
   width: 100%;
@@ -112,7 +112,8 @@
   padding: 15px;
 }
 
-.cast-title h4 {
+.cast-title h4,
+.crew-title h4 {
   margin: 0;
   color: white;
   font-size: 15px;
@@ -120,7 +121,28 @@
   text-align: center;
 }
 
-.crew div:hover .cast-title {
+.cast div:hover .cast-title {
   opacity: 1;
   z-index: 0;
+}
+
+/*.....crew......*/
+.crew {
+}
+
+.crew-title {
+  padding: 1rem;
+  border: 1px rgb(71, 71, 71) solid;
+  margin: 1rem 0;
+  border-radius: 10px;
+}
+
+.crew-title:hover {
+  background-color: rgb(71, 71, 71);
+  transform: translateY(-5px);
+  transition: all 0.5s linear;
+}
+
+.crew-title h4 {
+  text-align: left;
 }

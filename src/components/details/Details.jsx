@@ -21,17 +21,16 @@ const Details = ({ find, id }) => {
     fetchImdbCast();
   }, [type]);
 
-
-  //console.log(crew);
+  console.log(crew);
 
   const firstThreeDirectors = [...crew]
     .filter(
       (obj, index, self) => index === self.findIndex((t) => t.id === obj.id)
     )
-    .splice(0, 6)
+    .splice(0, 4)
     .map((director) => (
       <div key={director.id}>
-        <div className="cast-title">
+        <div className="crew-title">
           <h4> {director.name} </h4>
         </div>
       </div>
@@ -66,9 +65,9 @@ const Details = ({ find, id }) => {
         <h3>Crew</h3>
         {firstThreeDirectors}
       </div>
-      <div className="crew">
+      <div className="cast">
         <h3>Cast</h3>
-        {firstThreeActors}
+        <section>{firstThreeActors}</section>
       </div>
     </div>
   );
