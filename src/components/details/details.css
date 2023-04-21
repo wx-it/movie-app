@@ -135,6 +135,7 @@
   border: 1px rgb(71, 71, 71) solid;
   margin: 1rem 0;
   border-radius: 10px;
+  cursor: pointer;
 }
 
 .crew-title:hover {

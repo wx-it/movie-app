@@ -6,20 +6,18 @@ const Details = ({ find, id }) => {
   const [cast, setCast] = useState([]);
   const [crew, setCrew] = useState([]);
   //const getGenres = find.genres.map((g) => <p key={g.name}>{g.name}</p>);
-  const [type, setType] = useState("movie");
 
   //get cast from imdb api
   useEffect(() => {
     const fetchImdbCast = async () => {
-      setType(find.title ? "movie" : "tv");
       const allData = await fetch(
-        `https://api.themoviedb.org/3/${type}/${id}/credits?api_key=305075112da051598dad6f3e8103590b`
+        `https://api.themoviedb.org/3/${find.media_type}/${id}/credits?api_key=305075112da051598dad6f3e8103590b`
       );
       const response = await allData.json();
       setData(response);
     };
     fetchImdbCast();
-  }, [type]);
+  }, [find.media_type]);
 
   useEffect(() => {
     if (data.crew && data.crew.length > 2) {
@@ -36,7 +34,6 @@ const Details = ({ find, id }) => {
       setCast(firstFourActors);
     }
   }, [data]);
-  console.log(cast);
 
   const firstFourCrew = crew.map((c) => (
     <div key={c.id}>
