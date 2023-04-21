@@ -21,7 +21,7 @@
   cursor: pointer;
 }
 
-.sidebar-toggle:hover{
+.sidebar-toggle:hover {
   color: rgba(0, 173, 69, 1);
 }
 
@@ -30,7 +30,7 @@
   padding: 0 10px;
 }
 
-.sidebar-toggle.rotated:hover{
+.sidebar-toggle.rotated:hover {
   color: white;
   background-color: rgb(58, 58, 58);
   border-radius: 5px;
@@ -83,9 +83,47 @@
 .links div:hover {
   color: rgba(0, 173, 69, 1);
   text-decoration: none;
-  
 }
 
 .links.icons-only h4 {
   display: none;
+}
+
+@media only screen and (max-width: 600px) {
+  .sideBar {
+    width: 100vw;
+    height: 50px;
+    z-index: 222;
+    gap: 0;
+    padding: 1rem;
+    margin: 0;
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+  }
+  .sideBar.collapsed {
+    width: 100vw;
+  }
+  .sideBar-top,
+  .sidebar-toggle,
+  .sideBar h2,
+  .links div h4 {
+    display: none;
+  }
+
+  .links {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+    margin: 0;
+    padding: 1rem 0;
+  }
+  .links div {
+    padding: 0;
+    margin: 0;
+  }
 }
