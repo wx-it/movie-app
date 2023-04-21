@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 const Details = ({ find, id }) => {
   const [cast, setCast] = useState([]);
   const [crew, setCrew] = useState([]);
-  const getGenres = find.genres.map((g) => <p key={g.name}>{g.name}</p>);
+  //const getGenres = find.genres.map((g) => <p key={g.name}>{g.name}</p>);
   const [type, setType] = useState("movie");
 
   //get cast from imdb api
@@ -20,11 +20,10 @@ const Details = ({ find, id }) => {
     };
     fetchImdbCast();
   }, [type]);
-  console.log(type)
 
 
   //console.log(crew);
-/*
+
   const firstThreeDirectors = [...crew]
     .filter(
       (obj, index, self) => index === self.findIndex((t) => t.id === obj.id)
@@ -49,7 +48,7 @@ const Details = ({ find, id }) => {
       </div>
     </div>
   ));
-*/
+
   return (
     <div className="about">
       <div className="image">
@@ -58,7 +57,6 @@ const Details = ({ find, id }) => {
           src={`https://image.tmdb.org/t/p/w1280/${find.backdrop_path}`}
           alt={find.title}
         />
-        <div>{getGenres}</div>
       </div>
       <h1> {find.title || find.original_name} </h1>
       <span> {find.release_date} </span>
@@ -66,9 +64,11 @@ const Details = ({ find, id }) => {
 
       <div className="crew">
         <h3>Crew</h3>
+        {firstThreeDirectors}
       </div>
       <div className="crew">
         <h3>Cast</h3>
+        {firstThreeActors}
       </div>
     </div>
   );

@@ -13,7 +13,7 @@ function App() {
   const [trending, setTrending] = useState([]);
   const [topRatedMovies, setTopRatedMovies] = useState([]);
   const [topRatedShows, setTopRatedShows] = useState([]);
-  const [find, setFind] = useState();
+  const [find, setFind] = useState([]);
   const [currentId, setCurrentId] = useState("");
 
   // discover; home link
@@ -74,39 +74,21 @@ function App() {
 
   //get any movie/show
   const [id, setId] = useState(1399); // replace with actual ID
-  const [mediaType, setMediaType] = useState("movie");
-
-  useEffect(() => {
-    async function fetchMovie() {
-      const movieResponse = await fetch(
-        `https://api.themoviedb.org/3/movie/${id}?api_key=305075112da051598dad6f3e8103590b&language=en-US`
-      );
-      const movieData = await movieResponse.json();
-
-      const tvResponse = await fetch(
-        `https://api.themoviedb.org/3/tv/${id}?api_key=305075112da051598dad6f3e8103590b&language=en-US`
-      );
-      const tvData = await tvResponse.json();
-      if(tvData.first_air_date){
-        setMediaType("tv")
-        setFind(tvData)
-      } else {
-        setMediaType("movie");
-        setFind(movieData);
-      }
-      console.log(tvData)
-    }
-    fetchMovie();
-  }, [id, mediaType]);
-  console.log(id)
-
-  function handleIdChange(newId) {
+  const [name, setName] = useState();
+  function handleIdChange(newId, newName) {
     setId(newId);
-    setMediaType(find.name ? "tv" : "movie");
+    setName(newName);
   }
-
-  console.log(mediaType);
-  console.log(find);
+  useEffect(() => {
+    async function fetchSingleMedia() {
+      const response = await fetch(
+        `https://api.themoviedb.org/3/search/multi?api_key=305075112da051598dad6f3e8103590b&language=en-US&query=${name}&page=1&include_adult=false`
+      );
+      const data = await response.json();
+      setFind(data.results[0]);
+    }
+    fetchSingleMedia();
+  }, [name]);
 
   return (
     <div className="container">
@@ -134,7 +116,6 @@ function App() {
               element={
                 <Movies
                   topRatedMovies={topRatedMovies}
-                  setCurrentId={setCurrentId}
                   handleIdChange={handleIdChange}
                 />
               }
