@@ -2,6 +2,7 @@ import "./details.css";
 import { useEffect, useState } from "react";
 
 const Details = ({ find, id }) => {
+  const [data, setData] = useState([]);
   const [cast, setCast] = useState([]);
   const [crew, setCrew] = useState([]);
   //const getGenres = find.genres.map((g) => <p key={g.name}>{g.name}</p>);
@@ -10,33 +11,42 @@ const Details = ({ find, id }) => {
   //get cast from imdb api
   useEffect(() => {
     const fetchImdbCast = async () => {
-      setType(find.first_air_date ? "movie" : "tv");
-      const response = await fetch(
+      setType(find.title ? "movie" : "tv");
+      const allData = await fetch(
         `https://api.themoviedb.org/3/${type}/${id}/credits?api_key=305075112da051598dad6f3e8103590b`
       );
-      const data = await response.json();
-      setCast(data.cast);
-      setCrew(data.crew);
+      const response = await allData.json();
+      setData(response);
     };
     fetchImdbCast();
   }, [type]);
 
-  console.log(crew);
+  useEffect(() => {
+    if (data.crew && data.crew.length > 2) {
+      const firstFourObjects = data.crew
+        .filter(
+          (obj, index, self) => index === self.findIndex((t) => t.id === obj.id)
+        )
+        .slice(0, 4);
+      setCrew(firstFourObjects);
+    }
 
-  const firstThreeDirectors = [...crew]
-    .filter(
-      (obj, index, self) => index === self.findIndex((t) => t.id === obj.id)
-    )
-    .splice(0, 4)
-    .map((director) => (
-      <div key={director.id}>
-        <div className="crew-title">
-          <h4> {director.name} </h4>
-        </div>
+    if (data.cast && data.cast.length > 2) {
+      const firstFourActors = data.cast.slice(0, 4);
+      setCast(firstFourActors);
+    }
+  }, [data]);
+  console.log(cast);
+
+  const firstFourCrew = crew.map((c) => (
+    <div key={c.id}>
+      <div className="crew-title">
+        <h4> {c.name} </h4>
       </div>
-    ));
+    </div>
+  ));
 
-  const firstThreeActors = [...cast].splice(0, 5).map((actor) => (
+  const firstThreeActors = cast.map((actor) => (
     <div key={actor.cast_id}>
       <img
         src={`https://image.tmdb.org/t/p/w1280/${actor.profile_path}`}
@@ -63,7 +73,7 @@ const Details = ({ find, id }) => {
 
       <div className="crew">
         <h3>Crew</h3>
-        {firstThreeDirectors}
+        {firstFourCrew}
       </div>
       <div className="cast">
         <h3>Cast</h3>
