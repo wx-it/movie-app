@@ -6,7 +6,7 @@ import { TbMovie } from "react-icons/tb";
 import { AiOutlineHome, AiOutlineFire } from "react-icons/ai";
 import { Link } from "react-router-dom";
 
-const SideBar = () => {
+const SideBar = ({setPage, page}) => {
   const sideBarCollapse = localStorage.getItem("sideBar-collapsed");
   const [isExpanded, setIsExpanded] = useState(sideBarCollapse ? false : true);
 
@@ -32,7 +32,7 @@ const SideBar = () => {
 
       <nav className={isExpanded ? "links" : "links icons-only"}>
         <Link to="/">
-          <div>
+          <div onClick={()=> setPage(page => page == 0)} >
             <AiOutlineHome />
             <h4>Home</h4>
           </div>

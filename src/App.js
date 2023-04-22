@@ -15,26 +15,31 @@ function App() {
   const [topRatedShows, setTopRatedShows] = useState([]);
   const [find, setFind] = useState([]);
   const [currentId, setCurrentId] = useState("");
-  const [page, setPage] = useState(1)
+  const [currentPage, setCurrentPage] = useState(1);
 
   //switch page number
-  const incrementPageN=()=>{
-    setPage(page => page+1)
-    console.log(page)
-  }
+  const pageIncrement = () => {
+    setCurrentPage(page => page + 1);
+    console.log(currentPage)
+  };
+
+  const pageDecrement = () => {
+    setCurrentPage(page => page - 1);
+    console.log(currentPage)
+  };
 
   // discover; home link
   useEffect(() => {
     const fetchData = async () => {
       const data = await fetch(
-        `https://api.themoviedb.org/3/discover/movie?api_key=305075112da051598dad6f3e8103590b&page=${page}`
+        `https://api.themoviedb.org/3/discover/movie?api_key=305075112da051598dad6f3e8103590b&page=${currentPage}`
       );
 
       const response = await data.json();
       setallData(response.results);
     };
     fetchData();
-  }, [page]);
+  }, [currentPage]);
 
   //console.log(allData);
 
@@ -99,7 +104,7 @@ function App() {
 
   return (
     <div className="container">
-      <SideBar />
+      <SideBar setPage={setCurrentPage} page={currentPage} />
       <div className="right-container">
         <header>
           <h1>Movies Planet</h1>
@@ -109,7 +114,13 @@ function App() {
             <Route
               path="/"
               element={
-                <Home allData={allData} handleIdChange={handleIdChange} />
+                <Home
+                  allData={allData}
+                  handleIdChange={handleIdChange}
+                  page={currentPage}
+                  pageIncrement={pageIncrement}
+                  pageDecrement={pageDecrement}
+                />
               }
             />
             <Route
@@ -140,7 +151,6 @@ function App() {
             <Route path="/about" element={<Details find={find} id={id} />} />
           </Routes>
         </main>
-          <button onClick={incrementPageN} >click</button>
       </div>
     </div>
   );
