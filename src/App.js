@@ -15,19 +15,26 @@ function App() {
   const [topRatedShows, setTopRatedShows] = useState([]);
   const [find, setFind] = useState([]);
   const [currentId, setCurrentId] = useState("");
+  const [page, setPage] = useState(1)
+
+  //switch page number
+  const incrementPageN=()=>{
+    setPage(page => page+1)
+    console.log(page)
+  }
 
   // discover; home link
   useEffect(() => {
     const fetchData = async () => {
       const data = await fetch(
-        "https://api.themoviedb.org/3/discover/movie?api_key=305075112da051598dad6f3e8103590b"
+        `https://api.themoviedb.org/3/discover/movie?api_key=305075112da051598dad6f3e8103590b&page=${page}`
       );
 
       const response = await data.json();
       setallData(response.results);
     };
     fetchData();
-  }, []);
+  }, [page]);
 
   //console.log(allData);
 
@@ -133,6 +140,7 @@ function App() {
             <Route path="/about" element={<Details find={find} id={id} />} />
           </Routes>
         </main>
+          <button onClick={incrementPageN} >click</button>
       </div>
     </div>
   );
