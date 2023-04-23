@@ -18,22 +18,25 @@ function App() {
   const [loading, setLoading] = useState(false);
 
   //set loading page
-  useEffect(() => {
+  function loaderTimer() {
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
-    }, 5000);
+    }, 3000);
+  }
+  useEffect(() => {
+    loaderTimer();
   }, []);
 
   //switch page number
   const pageIncrement = () => {
     setCurrentPage((page) => page + 1);
-    console.log(currentPage);
+    loaderTimer();
   };
 
   const pageDecrement = () => {
     setCurrentPage((page) => page - 1);
-    console.log(currentPage);
+    loaderTimer();
   };
 
   // discover; home link
