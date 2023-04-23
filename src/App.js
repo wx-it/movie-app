@@ -19,13 +19,13 @@ function App() {
 
   //switch page number
   const pageIncrement = () => {
-    setCurrentPage(page => page + 1);
-    console.log(currentPage)
+    setCurrentPage((page) => page + 1);
+    console.log(currentPage);
   };
 
   const pageDecrement = () => {
-    setCurrentPage(page => page - 1);
-    console.log(currentPage)
+    setCurrentPage((page) => page - 1);
+    console.log(currentPage);
   };
 
   // discover; home link
@@ -48,41 +48,41 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       const trending = await fetch(
-        "https://api.themoviedb.org/3/trending/all/day?api_key=305075112da051598dad6f3e8103590b"
+        `https://api.themoviedb.org/3/trending/all/day?api_key=305075112da051598dad6f3e8103590b&page=${currentPage}`
       );
       const response = await trending.json();
       setTrending(response.results);
     };
 
     fetchData();
-  }, []);
+  }, [currentPage]);
 
   // latest movies; movies link
 
   useEffect(() => {
     const fetchData = async () => {
       const movies = await fetch(
-        "https://api.themoviedb.org/3/movie/top_rated?api_key=305075112da051598dad6f3e8103590b&language=en-US"
+        `https://api.themoviedb.org/3/movie/top_rated?api_key=305075112da051598dad6f3e8103590b&language=en-US&page=${currentPage}`
       );
       const response = await movies.json();
       setTopRatedMovies(response.results);
     };
 
     fetchData();
-  }, []);
+  }, [currentPage]);
 
   // top rated shows; shows link
   useEffect(() => {
     const fetchData = async () => {
       const tv = await fetch(
-        "https://api.themoviedb.org/3/tv/top_rated?api_key=305075112da051598dad6f3e8103590b&language=en-US"
+        `https://api.themoviedb.org/3/tv/top_rated?api_key=305075112da051598dad6f3e8103590b&language=en-US&page=${currentPage}`
       );
       const response = await tv.json();
       setTopRatedShows(response.results);
     };
 
     fetchData();
-  }, []);
+  }, [currentPage]);
 
   //get any movie/show
   const [id, setId] = useState(1399); // replace with actual ID
@@ -126,7 +126,13 @@ function App() {
             <Route
               path="/trending"
               element={
-                <Trending trending={trending} handleIdChange={handleIdChange} />
+                <Trending
+                  trending={trending}
+                  handleIdChange={handleIdChange}
+                  page={currentPage}
+                  pageIncrement={pageIncrement}
+                  pageDecrement={pageDecrement}
+                />
               }
             />
             <Route
@@ -135,6 +141,9 @@ function App() {
                 <Movies
                   topRatedMovies={topRatedMovies}
                   handleIdChange={handleIdChange}
+                  page={currentPage}
+                  pageIncrement={pageIncrement}
+                  pageDecrement={pageDecrement}
                 />
               }
             />
@@ -144,6 +153,9 @@ function App() {
                 <Shows
                   topRatedShows={topRatedShows}
                   handleIdChange={handleIdChange}
+                  page={currentPage}
+                  pageIncrement={pageIncrement}
+                  pageDecrement={pageDecrement}
                 />
               }
             />

@@ -1,11 +1,25 @@
 import Card from "../card/Card";
+import Pagination from "../pagination/Pagination";
 
-const Movie = ({ trending, handleIdChange }) => {
+const Movie = ({
+  trending,
+  handleIdChange,
+  pageDecrement,
+  pageIncrement,
+  page,
+}) => {
   return (
-    <div className="movies">
-      {trending.map((m) => (
-        <Card m={m} key={m.id} handleIdChange={handleIdChange} />
-      ))}
+    <div className="all-content">
+      <div className="movies">
+        {trending.map((m) => (
+          <Card m={m} key={m.id} handleIdChange={handleIdChange} />
+        ))}
+      </div>
+      <Pagination
+        page={page}
+        pageIncrement={pageIncrement}
+        pageDecrement={pageDecrement}
+      />
     </div>
   );
 };
