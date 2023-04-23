@@ -5,6 +5,7 @@ import { SlScreenDesktop } from "react-icons/sl";
 import { TbMovie } from "react-icons/tb";
 import { AiOutlineHome, AiOutlineFire } from "react-icons/ai";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 const SideBar = ({ setPage }) => {
   const sideBarCollapse = localStorage.getItem("sideBar-collapsed");
@@ -21,7 +22,16 @@ const SideBar = ({ setPage }) => {
   };
 
   return (
-    <div className={isExpanded ? "sideBar" : "sideBar collapsed"}>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{
+        opacity: 1,
+        transition: {
+          duration: 2,
+        },
+      }}
+      className={isExpanded ? "sideBar" : "sideBar collapsed"}
+    >
       <div className="sideBar-top">
         <h2>Movies</h2>
         <MdKeyboardDoubleArrowRight
@@ -56,7 +66,7 @@ const SideBar = ({ setPage }) => {
           </div>
         </Link>
       </nav>
-    </div>
+    </motion.div>
   );
 };
 
