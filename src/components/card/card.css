@@ -71,3 +71,9 @@
   top: 0;
   left: 0;
 }
+
+@media only screen and (max-width: 600px) {
+  .all-content{
+    gap: 1rem;
+  }
+}

@@ -43,6 +43,11 @@ header h1::first-letter{
 }
 
 @media only screen and (max-width: 600px) {
+  
+  .container{
+    padding-bottom: 5rem;
+  }
+  
   header h1{
     text-align: center;
   }
