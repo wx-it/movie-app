@@ -17,6 +17,7 @@ function App() {
   const [find, setFind] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState(false);
+  const [pageLoading, setPageLoading] = useState(false);
 
   //set loading page
   function loaderTimer() {
@@ -29,15 +30,25 @@ function App() {
     loaderTimer();
   }, []);
 
+  function loaderPageTimer() {
+    setPageLoading(true);
+    setTimeout(() => {
+      setPageLoading(false);
+    }, 3000);
+  }
+  useEffect(() => {
+    loaderPageTimer();
+  }, []);
+
   //switch page number
   const pageIncrement = () => {
     setCurrentPage((page) => page + 1);
-    loaderTimer();
+    loaderPageTimer();
   };
 
   const pageDecrement = () => {
     setCurrentPage((page) => page - 1);
-    loaderTimer();
+    loaderPageTimer();
   };
 
   // discover; home link
@@ -131,77 +142,81 @@ function App() {
       ) : (
         <div className="container">
           <SideBar setPage={setCurrentPage} page={currentPage} />
-          <div className="right-container">
-            <motion.header
-              initial={{ y: 20, opacity: 0 }}
-              animate={{
-                y: 0,
-                opacity: 1,
-                transition: {
-                  duration: 2,
-                },
-              }}
-            >
-              <h1>Movies Planet</h1>
-            </motion.header>
-            <main>
-              <Routes>
-                <Route
-                  path="/"
-                  element={
-                    <Home
-                      allData={allData}
-                      handleIdChange={handleIdChange}
-                      page={currentPage}
-                      pageIncrement={pageIncrement}
-                      pageDecrement={pageDecrement}
-                    />
-                  }
-                />
-                <Route
-                  path="/trending"
-                  element={
-                    <Trending
-                      trending={trending}
-                      handleIdChange={handleIdChange}
-                      page={currentPage}
-                      pageIncrement={pageIncrement}
-                      pageDecrement={pageDecrement}
-                    />
-                  }
-                />
-                <Route
-                  path="/movies"
-                  element={
-                    <Movies
-                      topRatedMovies={topRatedMovies}
-                      handleIdChange={handleIdChange}
-                      page={currentPage}
-                      pageIncrement={pageIncrement}
-                      pageDecrement={pageDecrement}
-                    />
-                  }
-                />
-                <Route
-                  path="/shows"
-                  element={
-                    <Shows
-                      topRatedShows={topRatedShows}
-                      handleIdChange={handleIdChange}
-                      page={currentPage}
-                      pageIncrement={pageIncrement}
-                      pageDecrement={pageDecrement}
-                    />
-                  }
-                />
+          {pageLoading ? (
+            <Loader />
+          ) : (
+            <div className="right-container">
+              <motion.header
+                initial={{ y: 20, opacity: 0 }}
+                animate={{
+                  y: 0,
+                  opacity: 1,
+                  transition: {
+                    duration: 2,
+                  },
+                }}
+              >
+                <h1>Movies Planet</h1>
+              </motion.header>
+              <main>
+                <Routes>
+                  <Route
+                    path="/"
+                    element={
+                      <Home
+                        allData={allData}
+                        handleIdChange={handleIdChange}
+                        page={currentPage}
+                        pageIncrement={pageIncrement}
+                        pageDecrement={pageDecrement}
+                      />
+                    }
+                  />
+                  <Route
+                    path="/trending"
+                    element={
+                      <Trending
+                        trending={trending}
+                        handleIdChange={handleIdChange}
+                        page={currentPage}
+                        pageIncrement={pageIncrement}
+                        pageDecrement={pageDecrement}
+                      />
+                    }
+                  />
+                  <Route
+                    path="/movies"
+                    element={
+                      <Movies
+                        topRatedMovies={topRatedMovies}
+                        handleIdChange={handleIdChange}
+                        page={currentPage}
+                        pageIncrement={pageIncrement}
+                        pageDecrement={pageDecrement}
+                      />
+                    }
+                  />
+                  <Route
+                    path="/shows"
+                    element={
+                      <Shows
+                        topRatedShows={topRatedShows}
+                        handleIdChange={handleIdChange}
+                        page={currentPage}
+                        pageIncrement={pageIncrement}
+                        pageDecrement={pageDecrement}
+                      />
+                    }
+                  />
 
-                <Route
-                  path="/about"
-                  element={<Details find={find} id={id} />}
-                />
-              </Routes>
-            </main>
-          </div>
+                  <Route
+                    path="/about"
+                    element={<Details find={find} id={id} />}
+                  />
+                </Routes>
+              </main>
+            </div>
+          )}
         </div>
       )}
     </>
