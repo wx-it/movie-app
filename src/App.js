@@ -7,6 +7,7 @@ import Movies from "./components/movies/Movies";
 import Shows from "./components/shows/Shows";
 import Details from "./components/details/Details";
 import Loader from "./components/loading/Loader";
+import { motion } from "framer-motion";
 
 function App() {
   const [allData, setallData] = useState([]);
@@ -116,14 +117,33 @@ function App() {
   return (
     <>
       {loading ? (
-        <Loader />
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{
+            opacity: 1,
+            transition: {
+              duration: 2,
+            },
+          }}
+        >
+          <Loader />
+        </motion.div>
       ) : (
         <div className="container">
           <SideBar setPage={setCurrentPage} page={currentPage} />
           <div className="right-container">
-            <header>
+            <motion.header
+              initial={{ y: 20, opacity: 0 }}
+              animate={{
+                y: 0,
+                opacity: 1,
+                transition: {
+                  duration: 2,
+                },
+              }}
+            >
               <h1>Movies Planet</h1>
-            </header>
+            </motion.header>
             <main>
               <Routes>
                 <Route

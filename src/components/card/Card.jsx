@@ -6,7 +6,7 @@ const Card = ({ m, handleIdChange }) => {
   return (
     <Link to="/about">
       <motion.div
-        initial={{ y: -50, opacity: 0 }}
+        initial={{ y: -20, opacity: 0 }}
         animate={{
           y: 0,
           opacity: 1,
