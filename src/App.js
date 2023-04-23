@@ -150,7 +150,7 @@ function App() {
         </motion.div>
       ) : (
         <div className="container">
-          <SideBar setPage={setCurrentPage} page={currentPage} />
+          <SideBar setPage={setCurrentPage} page={currentPage} loaderPageTimer={loaderPageTimer} />
           {pageLoading ? (
             <Loader />
           ) : (

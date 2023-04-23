@@ -7,7 +7,7 @@ import { AiOutlineHome, AiOutlineFire } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
-const SideBar = ({ setPage }) => {
+const SideBar = ({ setPage, loaderPageTimer }) => {
   const sideBarCollapse = localStorage.getItem("sideBar-collapsed");
   const [isExpanded, setIsExpanded] = useState(sideBarCollapse ? false : true);
 
@@ -42,25 +42,45 @@ const SideBar = ({ setPage }) => {
 
       <nav className={isExpanded ? "links" : "links icons-only"}>
         <Link to="/">
-          <div onClick={() => setPage(1)}>
+          <div
+            onClick={() => {
+              setPage(1);
+              loaderPageTimer();
+            }}
+          >
             <AiOutlineHome />
             <h4>Home</h4>
           </div>
         </Link>
         <Link to="/trending">
-          <div onClick={() => setPage(1)}>
+          <div
+            onClick={() => {
+              setPage(1);
+              loaderPageTimer();
+            }}
+          >
             <AiOutlineFire />
             <h4>Trending</h4>
           </div>
         </Link>
         <Link to="/movies">
-          <div onClick={() => setPage(1)}>
+          <div
+            onClick={() => {
+              setPage(1);
+              loaderPageTimer();
+            }}
+          >
             <TbMovie />
             <h4>Movies</h4>
           </div>
         </Link>
         <Link to="/shows">
-          <div onClick={() => setPage(1)}>
+          <div
+            onClick={() => {
+              setPage(1);
+              loaderPageTimer();
+            }}
+          >
             <SlScreenDesktop />
             <h4>Shows</h4>
           </div>
