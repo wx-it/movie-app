@@ -34,21 +34,30 @@ function App() {
     setPageLoading(true);
     setTimeout(() => {
       setPageLoading(false);
-    }, 3000);
+    }, 2000);
   }
   useEffect(() => {
     loaderPageTimer();
   }, []);
 
   //switch page number
+  const maxPageN = 20;
+  const minPageN = 1;
+
   const pageIncrement = () => {
-    setCurrentPage((page) => page + 1);
-    loaderPageTimer();
+    if (currentPage < maxPageN) {
+      setCurrentPage((page) => page + 1);
+      loaderPageTimer();
+    }
   };
 
+  //turn off loader if max / min is reached
+
   const pageDecrement = () => {
-    setCurrentPage((page) => page - 1);
-    loaderPageTimer();
+    if (currentPage > minPageN) {
+      setCurrentPage((page) => page - 1);
+      loaderPageTimer();
+    }
   };
 
   // discover; home link

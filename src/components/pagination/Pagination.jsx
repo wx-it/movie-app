@@ -20,7 +20,7 @@ const Pagination = ({ page, pageIncrement, pageDecrement }) => {
         y: 0,
         opacity: showText ? 1 : 0,
         transition: {
-          duration: 5,
+          duration: 2,
         },
       }}
       className="pagination"
