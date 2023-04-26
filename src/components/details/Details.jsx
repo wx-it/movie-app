@@ -35,7 +35,7 @@ const Details = ({ find, id, moreDetails }) => {
 
   //map genres
   const getGenres = moreDetails.genres.map((genre) => (
-    <div key={genre.id}>
+    <div className="genres" key={genre.id}>
       <p>{genre.name}</p>
     </div>
   ));
@@ -62,14 +62,19 @@ const Details = ({ find, id, moreDetails }) => {
 
   return (
     <div className="about">
-      <div className="image">
-        <span> {find.vote_average}/ 10 </span>
+
+      <div className="images">
+        <span> {find.vote_average.toString().substring(0, 3)}/ 10 </span>
+        <img
+          src={`https://image.tmdb.org/t/p/w1280/${find.poster_path}`}
+          alt={find.title}
+          />
         <img
           src={`https://image.tmdb.org/t/p/w1280/${find.backdrop_path}`}
           alt={find.title}
-        />
-        {getGenres}
+          />
       </div>
+        {getGenres}
       <h1> {find.title || find.original_name} </h1>
       <span> {find.release_date} </span>
       <p> {find.overview} </p>
