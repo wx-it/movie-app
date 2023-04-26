@@ -6,33 +6,15 @@
 .images {
   position: relative;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: flex-start;
-  width: 100%;
-  object-fit: cover;
+  width: 70%;
 }
-
 
 .images img {
   width: 100%;
-  position: relative;
   border-radius: 5px;
-}
-
-.images img:last-child{
-  flex-grow: 2;
-  width: 50%;
-  height: 400px;
-  object-fit: contain;
-}
-
-.images img:nth-child(2) {
-  flex-grow: 1;
-  width: 180px;
-  height: 400px;
-  object-fit: contain;
-
-
+  height: 100%;
 }
 
 .images span {
@@ -48,9 +30,27 @@
   font-size: 12px;
 }
 
+.genres{
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.genres p{
+  border: 1px #444444 solid;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+}
+
+.genres p:hover{
+  background-color: #444444;
+  border: 1px #ffffff00 solid;
+  transition: all 0.5s linear;
+  cursor: pointer;
+}
+
 .about h1 {
-  font-family: "Kalam", cursive;
-  margin-bottom: 0;
+  font-weight: 500;
 }
 
 .about > p:last-child {
@@ -66,7 +66,8 @@
   border-top: 1px rgb(71, 71, 71) solid;
 }
 
-.cast h3, .crew h3 {
+.cast h3,
+.crew h3 {
   font-weight: 500;
   font-size: 24px;
 }
