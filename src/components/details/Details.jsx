@@ -1,7 +1,7 @@
 import "./details.css";
 import { useEffect, useState } from "react";
 
-const Details = ({ find, id, genres }) => {
+const Details = ({ find, id, moreDetails }) => {
   const [data, setData] = useState([]);
   const [cast, setCast] = useState([]);
   const [crew, setCrew] = useState([]);
@@ -34,13 +34,11 @@ const Details = ({ find, id, genres }) => {
   }, [data]);
 
   //map genres
-  const genreNames = find.genre_ids
-    .map((id) => genres.find((genre) => genre.id === id).name)
-    .map((g) => (
-      <div key={g}>
-        <p>{g}</p>
-      </div>
-    ));
+  const getGenres = moreDetails.genres.map((genre) => (
+    <div key={genre.id}>
+      <p>{genre.name}</p>
+    </div>
+  ));
 
   const firstFourCrew = crew.map((c) => (
     <div key={c.id}>
@@ -70,7 +68,7 @@ const Details = ({ find, id, genres }) => {
           src={`https://image.tmdb.org/t/p/w1280/${find.backdrop_path}`}
           alt={find.title}
         />
-        {genreNames}
+        {getGenres}
       </div>
       <h1> {find.title || find.original_name} </h1>
       <span> {find.release_date} </span>

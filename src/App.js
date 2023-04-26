@@ -147,6 +147,18 @@ function App() {
     fetchGenres();
   }, [find.id]);
 
+  const [moreDetails, setMoreDetails] = useState([]);
+
+  useEffect(() => {
+    async function fetchMovieDetails() {
+      const response = await fetch(`https://api.themoviedb.org/3/${find.media_type}/${find.id}?api_key=305075112da051598dad6f3e8103590b`);
+      const data = await response.json();
+      setMoreDetails(data);
+    }
+
+    fetchMovieDetails();
+  }, [find.id]);
+
   return (
     <>
       {loading ? (
@@ -238,7 +250,7 @@ function App() {
                   <Route
                     path="/about"
                     element={
-                      <Details find={find} id={id} genres={genres} />
+                      <Details find={find} id={id} moreDetails={moreDetails} />
                     }
                   />
                 </Routes>
