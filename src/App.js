@@ -134,6 +134,19 @@ function App() {
     fetchSingleMedia();
   }, [name]);
 
+  //get genre name for each movie/show
+  const [genres, setGenres] = useState([]);
+  useEffect(() => {
+    async function fetchGenres() {
+      const response = await fetch(
+        `https://api.themoviedb.org/3/genre/movie/list?api_key=305075112da051598dad6f3e8103590b&language=en-US`
+      );
+      const data = await response.json();
+      setGenres(data.genres);
+    }
+    fetchGenres();
+  }, [find.id]);
+
   return (
     <>
       {loading ? (
@@ -150,7 +163,11 @@ function App() {
         </motion.div>
       ) : (
         <div className="container">
-          <SideBar setPage={setCurrentPage} page={currentPage} loaderPageTimer={loaderPageTimer} />
+          <SideBar
+            setPage={setCurrentPage}
+            page={currentPage}
+            loaderPageTimer={loaderPageTimer}
+          />
           {pageLoading ? (
             <Loader />
           ) : (
@@ -220,7 +237,9 @@ function App() {
 
                   <Route
                     path="/about"
-                    element={<Details find={find} id={id} />}
+                    element={
+                      <Details find={find} id={id} genres={genres} />
+                    }
                   />
                 </Routes>
               </main>
