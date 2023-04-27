@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import "./card.css";
 import { motion } from "framer-motion";
 
-const Card = ({ m, handleIdChange }) => {
+const Card = ({ m, handleIdChange, loaderPageTimer }) => {
   return (
     <Link to="/about">
       <motion.div
@@ -14,7 +14,7 @@ const Card = ({ m, handleIdChange }) => {
             duration: 2,
           },
         }}
-        onClick={() => handleIdChange(m.id, m.title || m.name)}
+        onClick={() => {handleIdChange(m.id, m.title || m.name); loaderPageTimer()}}
         key={m.id}
         className="movie"
       >

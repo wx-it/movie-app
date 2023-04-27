@@ -71,7 +71,6 @@ const Details = ({ find, id, moreDetails }) => {
 
   const formattedDuration = formatDuration(moreDetails.runtime);
 
-  console.log(moreDetails);
   return (
     <div className="about">
       <h1> {find.title || find.original_name} </h1>
@@ -85,8 +84,7 @@ const Details = ({ find, id, moreDetails }) => {
       <div className="genres">{getGenres}</div>
       <section>
         <span className="vote">
-          {find.vote_average.toString().substring(0, 3)}/
-          <span>10</span>
+          {find.vote_average.toString().substring(0, 3)}/<span>10</span>
         </span>
         <div className="info">
           <div>
@@ -98,7 +96,7 @@ const Details = ({ find, id, moreDetails }) => {
             <p> {formattedDuration} </p>
           </div>
           <div>
-            <h5>Status</h5>
+            <h5>Status:</h5>
             <p> {moreDetails.status} </p>
           </div>
         </div>

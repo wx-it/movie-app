@@ -7,12 +7,18 @@ const Movies = ({
   pageIncrement,
   pageDecrement,
   page,
+  loaderPageTimer,
 }) => {
   return (
     <div className="all-content">
       <div className="movies">
         {topRatedMovies.map((m) => (
-          <Card m={m} key={m.id} handleIdChange={handleIdChange} />
+          <Card
+            m={m}
+            key={m.id}
+            handleIdChange={handleIdChange}
+            loaderPageTimer={loaderPageTimer}
+          />
         ))}
       </div>
       <Pagination

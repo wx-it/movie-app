@@ -7,12 +7,18 @@ const Movie = ({
   pageDecrement,
   pageIncrement,
   page,
+  loaderPageTimer,
 }) => {
   return (
     <div className="all-content">
       <div className="movies">
         {trending.map((m) => (
-          <Card m={m} key={m.id} handleIdChange={handleIdChange} />
+          <Card
+            m={m}
+            key={m.id}
+            handleIdChange={handleIdChange}
+            loaderPageTimer={loaderPageTimer}
+          />
         ))}
       </div>
       <Pagination

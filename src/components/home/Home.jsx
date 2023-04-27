@@ -9,12 +9,19 @@ const Home = ({
   page,
   pageIncrement,
   pageDecrement,
+  loaderPageTimer
+
 }) => {
   return (
     <div className="all-content">
       <div className="movies">
         {allData.map((m) => (
-          <Card m={m} key={m.id} handleIdChange={handleIdChange} />
+          <Card
+            m={m}
+            key={m.id}
+            handleIdChange={handleIdChange}
+            loaderPageTimer={loaderPageTimer}
+          />
         ))}
       </div>
       <Pagination

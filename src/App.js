@@ -151,7 +151,9 @@ function App() {
 
   useEffect(() => {
     async function fetchMovieDetails() {
-      const response = await fetch(`https://api.themoviedb.org/3/${find.media_type}/${find.id}?api_key=305075112da051598dad6f3e8103590b`);
+      const response = await fetch(
+        `https://api.themoviedb.org/3/${find.media_type}/${find.id}?api_key=305075112da051598dad6f3e8103590b`
+      );
       const data = await response.json();
       setMoreDetails(data);
     }
@@ -207,6 +209,7 @@ function App() {
                         page={currentPage}
                         pageIncrement={pageIncrement}
                         pageDecrement={pageDecrement}
+                        loaderPageTimer={loaderPageTimer}
                       />
                     }
                   />
@@ -219,6 +222,7 @@ function App() {
                         page={currentPage}
                         pageIncrement={pageIncrement}
                         pageDecrement={pageDecrement}
+                        loaderPageTimer={loaderPageTimer}
                       />
                     }
                   />
@@ -231,6 +235,7 @@ function App() {
                         page={currentPage}
                         pageIncrement={pageIncrement}
                         pageDecrement={pageDecrement}
+                        loaderPageTimer={loaderPageTimer}
                       />
                     }
                   />
@@ -243,6 +248,7 @@ function App() {
                         page={currentPage}
                         pageIncrement={pageIncrement}
                         pageDecrement={pageDecrement}
+                        loaderPageTimer={loaderPageTimer}
                       />
                     }
                   />
