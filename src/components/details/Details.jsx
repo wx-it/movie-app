@@ -5,6 +5,7 @@ const Details = ({ find, id, moreDetails }) => {
   const [data, setData] = useState([]);
   const [cast, setCast] = useState([]);
   const [crew, setCrew] = useState([]);
+
   //get cast from imdb api
   useEffect(() => {
     const fetchImdbCast = async () => {
@@ -38,6 +39,8 @@ const Details = ({ find, id, moreDetails }) => {
     <p key={genre.id}>{genre.name}</p>
   ));
 
+  //map crew / cast
+
   const firstFourCrew = crew.map((c) => (
     <div key={c.id}>
       <div className="crew-title">
@@ -58,10 +61,23 @@ const Details = ({ find, id, moreDetails }) => {
     </div>
   ));
 
+  //get runtime in hours and minutes
+
+  const formatDuration = () => {
+    const hours = Math.floor(moreDetails.runtime / 60);
+    const minutes = moreDetails.runtime % 60;
+    return `${hours}h ${minutes}m`;
+  };
+
+  const formattedDuration = formatDuration(moreDetails.runtime);
+
+  console.log(formatDuration());
+
   return (
     <div className="about">
       <h1> {find.title || find.original_name} </h1>
       <span> {find.release_date} </span>
+      <span> {formattedDuration} </span>
       <div className="images">
         <span> {find.vote_average.toString().substring(0, 3)}/ 10 </span>
 
