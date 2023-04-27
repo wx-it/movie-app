@@ -66,27 +66,43 @@ const Details = ({ find, id, moreDetails }) => {
   const formatDuration = () => {
     const hours = Math.floor(moreDetails.runtime / 60);
     const minutes = moreDetails.runtime % 60;
-    return `${hours}h ${minutes}m`;
+    return `${hours}h ${minutes}min`;
   };
 
   const formattedDuration = formatDuration(moreDetails.runtime);
 
-  console.log(formatDuration());
-
+  console.log(moreDetails);
   return (
     <div className="about">
       <h1> {find.title || find.original_name} </h1>
-      <span> {find.release_date} </span>
-      <span> {formattedDuration} </span>
-      <div className="images">
-        <span> {find.vote_average.toString().substring(0, 3)}/ 10 </span>
 
+      <div className="images">
         <img
           src={`https://image.tmdb.org/t/p/w1280/${find.backdrop_path}`}
           alt={find.title}
         />
       </div>
       <div className="genres">{getGenres}</div>
+      <section>
+        <span className="vote">
+          {find.vote_average.toString().substring(0, 3)}/
+          <span>10</span>
+        </span>
+        <div className="info">
+          <div>
+            <h5>Released Date:</h5>
+            <p> {find.release_date} </p>
+          </div>
+          <div>
+            <h5>Duration:</h5>
+            <p> {formattedDuration} </p>
+          </div>
+          <div>
+            <h5>Status</h5>
+            <p> {moreDetails.status} </p>
+          </div>
+        </div>
+      </section>
       <p> {find.overview} </p>
 
       <div className="crew">

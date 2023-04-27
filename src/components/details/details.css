@@ -5,29 +5,13 @@
 
 .images {
   position: relative;
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-  width: 70%;
+  width: 100%;
 }
 
 .images img {
   width: 100%;
   border-radius: 5px;
   height: 100%;
-}
-
-.images span {
-  position: absolute;
-  z-index: 1;
-  top: 10px;
-  right: 10px;
-  color: white;
-  background-color: #525252d0;
-  box-shadow: 0px 3px 5px 2px rgba(0, 0, 0, 0.5);
-  padding: 10px;
-  border-radius: 5px;
-  font-size: 12px;
 }
 
 .genres{
@@ -37,7 +21,7 @@
 }
 
 .genres p{
-  border: 1px #444444 solid;
+  border: 1px #00AD45 solid;
   padding: 0.5rem 1rem;
   border-radius: 20px;
 }
@@ -59,6 +43,49 @@
   font-weight: 300;
   margin-top: 0;
 }
+
+.about section{
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 2rem;
+}
+
+.vote{
+  border: 2px #00AD45 solid;
+  padding: 3rem 2.5rem;
+  border-radius: 10px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  font-weight: 300;
+  gap: 2px;
+}
+
+.vote span{
+  color: gray;
+  font-size: 12px;
+}
+
+
+.info div{
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.5rem;
+}
+
+.info div h5{
+  margin: 0px;
+  color: #00AD45;
+  font-weight: 400;
+  font-size: 15px;
+}
+
+.info div p{
+  font-size: 13px;
+}
+
 
 /*........crew...........*/
 
