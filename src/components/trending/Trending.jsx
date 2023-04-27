@@ -11,6 +11,7 @@ const Movie = ({
 }) => {
   return (
     <div className="all-content">
+      <h2>Trending</h2>
       <div className="movies">
         {trending.map((m) => (
           <Card

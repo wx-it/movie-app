@@ -11,6 +11,7 @@ const Shows = ({
 }) => {
   return (
     <div className="all-content">
+      <h2>TV Shows</h2>
       <div className="movies">
         {topRatedShows.map((m) => (
           <Card

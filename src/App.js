@@ -186,18 +186,6 @@ function App() {
             <Loader />
           ) : (
             <div className="right-container">
-              <motion.header
-                initial={{ y: 20, opacity: 0 }}
-                animate={{
-                  y: 0,
-                  opacity: 1,
-                  transition: {
-                    duration: 2,
-                  },
-                }}
-              >
-                <h1>Movies Planet</h1>
-              </motion.header>
               <main>
                 <Routes>
                   <Route
