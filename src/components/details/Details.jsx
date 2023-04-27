@@ -76,6 +76,11 @@ const Details = ({ find, id, moreDetails }) => {
       <h1> {find.title || find.original_name} </h1>
 
       <div className="images">
+        {/* display poster when screen is smaller */}
+        <img
+          src={`https://image.tmdb.org/t/p/w1280/${find.poster_path}`}
+          alt={find.title}
+        />
         <img
           src={`https://image.tmdb.org/t/p/w1280/${find.backdrop_path}`}
           alt={find.title}
