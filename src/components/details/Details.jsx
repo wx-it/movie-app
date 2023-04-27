@@ -1,5 +1,6 @@
 import "./details.css";
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 
 const Details = ({ find, id, moreDetails }) => {
   const [data, setData] = useState([]);
@@ -61,9 +62,9 @@ const Details = ({ find, id, moreDetails }) => {
           <p>Image Unavailable</p>
         </div>
       )}
-        <div className="cast-title">
-          <h4> {actor.name} </h4>
-        </div>
+      <div className="cast-title">
+        <h4> {actor.name} </h4>
+      </div>
     </div>
   ));
 
@@ -78,7 +79,17 @@ const Details = ({ find, id, moreDetails }) => {
   const formattedDuration = formatDuration(moreDetails.runtime);
 
   return (
-    <div className="about">
+    <motion.div
+      initial={{ y: -20, opacity: 0 }}
+      animate={{
+        y: 0,
+        opacity: 1,
+        transition: {
+          duration: 2,
+        },
+      }}
+      className="about"
+    >
       <h1> {find.title || find.original_name} </h1>
 
       <div className="images">
@@ -122,7 +133,7 @@ const Details = ({ find, id, moreDetails }) => {
         <h3>Cast</h3>
         <section>{firstThreeActors}</section>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
