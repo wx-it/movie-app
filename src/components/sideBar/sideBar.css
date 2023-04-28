@@ -72,7 +72,10 @@
   padding: 1.5rem 1rem;
   cursor: pointer;
   color: white;
-  text-decoration: none;
+}
+
+.links .selected {
+  color: rgba(0, 173, 69, 1);
 }
 
 .links div h4 {

@@ -21,6 +21,12 @@ const SideBar = ({ setPage, loaderPageTimer }) => {
     localStorage.removeItem("sideBar-collapsed");
   };
 
+  const [selected, setSelected] = useState(0);
+
+  const handleClick = (index) => {
+    setSelected(index);
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -43,9 +49,11 @@ const SideBar = ({ setPage, loaderPageTimer }) => {
       <nav className={isExpanded ? "links" : "links icons-only"}>
         <Link to="/">
           <div
+            className={selected === 0 ? "selected" : ""}
             onClick={() => {
               setPage(1);
               loaderPageTimer();
+              handleClick(0);
             }}
           >
             <AiOutlineHome />
@@ -54,9 +62,11 @@ const SideBar = ({ setPage, loaderPageTimer }) => {
         </Link>
         <Link to="/trending">
           <div
+            className={selected === 1 ? "selected" : ""}
             onClick={() => {
               setPage(1);
               loaderPageTimer();
+              handleClick(1);
             }}
           >
             <AiOutlineFire />
@@ -65,9 +75,11 @@ const SideBar = ({ setPage, loaderPageTimer }) => {
         </Link>
         <Link to="/movies">
           <div
+            className={selected === 2 ? "selected" : ""}
             onClick={() => {
               setPage(1);
               loaderPageTimer();
+              handleClick(2);
             }}
           >
             <TbMovie />
@@ -76,9 +88,11 @@ const SideBar = ({ setPage, loaderPageTimer }) => {
         </Link>
         <Link to="/shows">
           <div
+            className={selected === 3 ? "selected" : ""}
             onClick={() => {
               setPage(1);
               loaderPageTimer();
+              handleClick(3);
             }}
           >
             <SlScreenDesktop />
