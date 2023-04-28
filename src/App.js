@@ -123,6 +123,7 @@ function App() {
     setId(newId);
     setName(newName);
   }
+
   useEffect(() => {
     async function fetchSingleMedia() {
       const response = await fetch(
@@ -161,6 +162,28 @@ function App() {
     fetchMovieDetails();
   }, [find.id]);
 
+  //search movie based on name from search bar
+  //get value
+  const [result, setResult] = useState([])
+  const [search, setSearch] = useState("");
+  const getValue = (e) => {
+    setSearch(e.target.value);
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    searchMedia();
+  };
+
+    async function searchMedia() {
+      const response = await fetch(
+        `https://api.themoviedb.org/3/search/multi?api_key=305075112da051598dad6f3e8103590b&language=en-US&query=${search}&page=1&include_adult=false`
+      );
+      const data = await response.json();
+      setResult(data)
+    }
+console.log(result)
+
   return (
     <>
       {loading ? (
@@ -186,6 +209,15 @@ function App() {
             <Loader />
           ) : (
             <div className="right-container">
+              <form onSubmit={onSubmit}>
+                <input
+                  type="text"
+                  value={search}
+                  name="search"
+                  onChange={getValue}
+                />
+                <button type="submit" >search</button>
+              </form>
               <main>
                 <Routes>
                   <Route
