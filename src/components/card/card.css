@@ -125,4 +125,8 @@
   .all-content {
     gap: 1rem;
   }
+
+  .title-search {
+    flex-wrap: wrap;
+  }
 }
