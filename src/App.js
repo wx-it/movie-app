@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Routes, Route } from "react-router";
+import { Routes, Route, Link } from "react-router-dom";
 import Home from "./components/home/Home";
 import SideBar from "./components/sideBar/SideBar";
 import Trending from "./components/trending/Trending";
@@ -8,6 +8,7 @@ import Shows from "./components/shows/Shows";
 import Details from "./components/details/Details";
 import Loader from "./components/loading/Loader";
 import { motion } from "framer-motion";
+import Search from "./components/search/Search";
 
 function App() {
   const [allData, setallData] = useState([]);
@@ -164,7 +165,8 @@ function App() {
 
   //search movie based on name from search bar
   //get value
-  const [result, setResult] = useState([])
+  //display search item in another page
+  const [result, setResult] = useState([]);
   const [search, setSearch] = useState("");
   const getValue = (e) => {
     setSearch(e.target.value);
@@ -175,14 +177,14 @@ function App() {
     searchMedia();
   };
 
-    async function searchMedia() {
-      const response = await fetch(
-        `https://api.themoviedb.org/3/search/multi?api_key=305075112da051598dad6f3e8103590b&language=en-US&query=${search}&page=1&include_adult=false`
-      );
-      const data = await response.json();
-      setResult(data)
-    }
-console.log(result)
+  async function searchMedia() {
+    const response = await fetch(
+      `https://api.themoviedb.org/3/search/multi?api_key=305075112da051598dad6f3e8103590b&language=en-US&query=${search}&page=1&include_adult=false`
+    );
+    const data = await response.json();
+    setResult(data);
+  }
+  console.log(result.results);
 
   return (
     <>
@@ -216,7 +218,9 @@ console.log(result)
                   name="search"
                   onChange={getValue}
                 />
-                <button type="submit" >search</button>
+                <Link to="/search-results">
+                  <button type="submit">search</button>
+                </Link>
               </form>
               <main>
                 <Routes>
@@ -279,6 +283,8 @@ console.log(result)
                       <Details find={find} id={id} moreDetails={moreDetails} />
                     }
                   />
+
+                  <Route path="/search-results" element={<Search />} />
                 </Routes>
               </main>
             </div>
