@@ -8,10 +8,14 @@ const Movies = ({
   pageDecrement,
   page,
   loaderPageTimer,
+  searchDiv,
 }) => {
   return (
     <div className="all-content">
-      <h2>Movies</h2>
+      <div className="title-search">
+        <h2>Movies</h2>
+        {searchDiv}
+      </div>
       <div className="movies">
         {topRatedMovies.map((m) => (
           <Card

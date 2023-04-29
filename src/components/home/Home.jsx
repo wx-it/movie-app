@@ -11,10 +11,14 @@ const Home = ({
   pageIncrement,
   pageDecrement,
   loaderPageTimer,
+  searchDiv,
 }) => {
   return (
     <div className="all-content">
-      <h2>Discover</h2>
+      <div className="title-search">
+        <h2>Discover</h2>
+        {searchDiv}
+      </div>
       <div className="movies">
         {allData.map((m) => (
           <Card

@@ -7,14 +7,21 @@
   gap: 3rem;
 }
 
-.all-content h2{
+.title-search{
+  width: 100%;
+  border-bottom: 1px #444444 solid;
+  padding-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.title-search h2{
   justify-self: flex-start;
   width: 100%;
   color: white;
   font-size: 30px;
   font-weight: 500;
-  border-bottom: 1px #444444 solid;
-  padding-bottom: 1rem;
 }
 
 .movies {

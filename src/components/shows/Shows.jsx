@@ -8,10 +8,14 @@ const Shows = ({
   pageIncrement,
   page,
   loaderPageTimer,
+  searchDiv,
 }) => {
   return (
     <div className="all-content">
-      <h2>TV Shows</h2>
+      <div className="title-search">
+        <h2>TV Shows</h2>
+        {searchDiv}
+      </div>
       <div className="movies">
         {topRatedShows.map((m) => (
           <Card

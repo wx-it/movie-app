@@ -8,10 +8,14 @@ const Movie = ({
   pageIncrement,
   page,
   loaderPageTimer,
+  searchDiv,
 }) => {
   return (
     <div className="all-content">
-      <h2>Trending</h2>
+      <div className="title-search">
+        <h2>Trending</h2>
+        {searchDiv}
+      </div>
       <div className="movies">
         {trending.map((m) => (
           <Card

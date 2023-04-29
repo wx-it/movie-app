@@ -183,8 +183,17 @@ function App() {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    setSearch("")
+    setSearch("");
   };
+
+  const searchDiv = (
+    <form onSubmit={onSubmit}>
+      <input type="text" name="search" value={search} onChange={getValue} />
+      <Link to="/search-results">
+        <button type="submit">search</button>
+      </Link>
+    </form>
+  );
 
   return (
     <>
@@ -211,17 +220,6 @@ function App() {
             <Loader />
           ) : (
             <div className="right-container">
-              <form onSubmit={onSubmit}>
-                <input
-                  type="text"
-                  name="search"
-                  value={search}
-                  onChange={getValue}
-                />
-                <Link to="/search-results">
-                  <button type="submit">search</button>
-                </Link>
-              </form>
               <main>
                 <Routes>
                   <Route
@@ -234,6 +232,7 @@ function App() {
                         pageIncrement={pageIncrement}
                         pageDecrement={pageDecrement}
                         loaderPageTimer={loaderPageTimer}
+                        searchDiv={searchDiv}
                       />
                     }
                   />
@@ -247,6 +246,7 @@ function App() {
                         pageIncrement={pageIncrement}
                         pageDecrement={pageDecrement}
                         loaderPageTimer={loaderPageTimer}
+                        searchDiv={searchDiv}
                       />
                     }
                   />
@@ -260,6 +260,7 @@ function App() {
                         pageIncrement={pageIncrement}
                         pageDecrement={pageDecrement}
                         loaderPageTimer={loaderPageTimer}
+                        searchDiv={searchDiv}
                       />
                     }
                   />
@@ -273,6 +274,7 @@ function App() {
                         pageIncrement={pageIncrement}
                         pageDecrement={pageDecrement}
                         loaderPageTimer={loaderPageTimer}
+                        searchDiv={searchDiv}
                       />
                     }
                   />
