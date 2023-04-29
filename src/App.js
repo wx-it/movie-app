@@ -168,23 +168,23 @@ function App() {
   //display search item in another page
   const [result, setResult] = useState([]);
   const [search, setSearch] = useState("");
-  const getValue = (e) => {
-    setSearch(e.target.value);
-  };
-
-  const onSubmit = (e) => {
-    e.preventDefault();
-    searchMedia();
-  };
-
   async function searchMedia() {
     const response = await fetch(
       `https://api.themoviedb.org/3/search/multi?api_key=305075112da051598dad6f3e8103590b&language=en-US&query=${search}&page=1&include_adult=false`
     );
     const data = await response.json();
-    setResult(data);
+    setResult(data.results);
   }
-  console.log(result.results);
+
+  const getValue = (e) => {
+    setSearch(e.target.value);
+    searchMedia();
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    setSearch("")
+  };
 
   return (
     <>
@@ -214,8 +214,8 @@ function App() {
               <form onSubmit={onSubmit}>
                 <input
                   type="text"
-                  value={search}
                   name="search"
+                  value={search}
                   onChange={getValue}
                 />
                 <Link to="/search-results">
@@ -284,7 +284,19 @@ function App() {
                     }
                   />
 
-                  <Route path="/search-results" element={<Search />} />
+                  <Route
+                    path="/search-results"
+                    element={
+                      <Search
+                        result={result}
+                        handleIdChange={handleIdChange}
+                        page={currentPage}
+                        pageIncrement={pageIncrement}
+                        pageDecrement={pageDecrement}
+                        loaderPageTimer={loaderPageTimer}
+                      />
+                    }
+                  />
                 </Routes>
               </main>
             </div>
