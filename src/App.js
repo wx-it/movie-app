@@ -9,6 +9,7 @@ import Details from "./components/details/Details";
 import Loader from "./components/loading/Loader";
 import { motion } from "framer-motion";
 import Search from "./components/search/Search";
+import { HiSearch } from "react-icons/hi";
 
 function App() {
   const [allData, setallData] = useState([]);
@@ -181,16 +182,18 @@ function App() {
     searchMedia();
   };
 
-  const onSubmit = (e) => {
-    e.preventDefault();
-    setSearch("");
-  };
-
   const searchDiv = (
-    <form onSubmit={onSubmit}>
-      <input type="text" name="search" value={search} onChange={getValue} />
+    <form>
+      <input
+        type="text"
+        placeholder="search"
+        value={search}
+        onChange={getValue}
+      />
       <Link to="/search-results">
-        <button type="submit">search</button>
+        <button onClick={() => setSearch("")}>
+          <HiSearch />
+        </button>
       </Link>
     </form>
   );
@@ -296,6 +299,7 @@ function App() {
                         pageIncrement={pageIncrement}
                         pageDecrement={pageDecrement}
                         loaderPageTimer={loaderPageTimer}
+                        searchDiv={searchDiv}
                       />
                     }
                   />

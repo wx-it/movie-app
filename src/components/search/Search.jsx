@@ -9,11 +9,14 @@ const Search = ({
   pageDecrement,
   page,
   loaderPageTimer,
+  searchDiv,
 }) => {
-  console.log(result);
   return (
     <div className="all-content">
-      <h2>Search Results</h2>
+      <div className="title-search">
+        <h2>Search Results</h2>
+        {searchDiv}
+      </div>
       <div className="movies">
         {result.map((m) => (
           <Card
